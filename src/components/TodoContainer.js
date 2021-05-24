@@ -27,7 +27,6 @@ function TodoContainer() {
     useEffect(() => {
         read().then((data) => {
             setTasks(data.todos);
-            console.log(data.todos);
         });
     }, []);
     //Create api new task
