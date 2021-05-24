@@ -19,10 +19,11 @@ function TodoItem({ task, student, id, hDelete, hUpdate, c }) {
                         <p>{student}</p>
                     </div>
                 </div>
-                <div className="checkbox-container one">
-                    {check ? <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} checked /> : <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} />}
-                    <label htmlFor={id}></label>
-                    <div className="active"></div>
+                <div class="switch">
+                    <div className="switch__1">
+                        {check ? <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} checked /> : <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} />}
+                        <label htmlFor={id}></label>
+                    </div>
                 </div>
                 <div className='delete'>
                     <button className='button'
@@ -32,7 +33,7 @@ function TodoItem({ task, student, id, hDelete, hUpdate, c }) {
                         </i></button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

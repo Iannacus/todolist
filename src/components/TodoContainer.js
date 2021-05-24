@@ -135,7 +135,7 @@ function TodoContainer() {
                 <h2>Welcome! Click on add a new task</h2>
             </div>
             <div className="add">
-                <button className='btn-add' onClick={() => {
+                <button className='btn btn-add btn__primary' onClick={() => {
                     handleShow(true);
                 }}>
                     <i className="fas fa-plus-circle"></i> Add New Task
