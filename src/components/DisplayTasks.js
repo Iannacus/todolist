@@ -9,11 +9,11 @@ function DisplayTasks({ all, pending, completed }) {
                 event={all}
             />
             <Btn
-                text={'Show Pending'}
+                text={'Pending'}
                 event={pending}
             />
             <Btn
-                text={'Show Completed'}
+                text={'Completed'}
                 event={completed}
             />
         </div>

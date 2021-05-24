@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-function TodoItem({ task, student, id, hDelete, hUpdate, }) {
+function TodoItem({ task, student, id, hDelete, hUpdate, c }) {
+
+    const [check, setCheck] = useState(false);
+    useEffect(() => {
+        setCheck(c)
+    }, [c])
+
     return (
         <div className="task__container">
             <div className="task">
@@ -13,7 +19,7 @@ function TodoItem({ task, student, id, hDelete, hUpdate, }) {
                     </div>
                 </div>
                 <div className="checkbox-container one">
-                    <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} />
+                    {check ? <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} checked /> : <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} />}
                     <label htmlFor={id}></label>
                     <div className="active"></div>
 

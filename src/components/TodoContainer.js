@@ -86,8 +86,8 @@ function TodoContainer() {
     }
 
     const handleUpdate = (identifier, isChecked) => {
-        update(identifier, isChecked).then(() => {
-
+        update(identifier, isChecked).then((data) => {
+            console.log(data);
             read().then((data) => {
                 setTasks(data.todos);
             });
