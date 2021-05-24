@@ -13,7 +13,6 @@ function TodoContainer() {
     const [tasksArray, setTasksArray] = useState([]);
     const [taskToCreate, setTaskToCreate] = useState(null);
     const [taskToDelete, setTaskToDelete] = useState(null);
-    const [formText, setFormText] = useState('Create');
     const [isLoading, setIsLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const [buttons, setButtons] = useState(0);
@@ -136,7 +135,6 @@ function TodoContainer() {
                 {showForm ?
                     <CreateTask
                         handleCreate={handleCreateTask}
-                        text={formText}
                         show={handleShow}
                     /> : null}
             </div>
