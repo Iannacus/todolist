@@ -74,7 +74,6 @@ function TodoContainer() {
     //Handle Values for api task creation
     const handleCreateTask = values => {
         setTaskToCreate(values);
-        console.log(values);
     }
     //handle id for api task delete
     const handleDelete = (identifier) => {
