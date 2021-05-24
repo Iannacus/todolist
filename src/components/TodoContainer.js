@@ -5,6 +5,7 @@ import deleteTask from './services/deleteT'
 import update from './services/update'
 import TodoItem from './TodoItem';
 import CreateTask from './CreateTask';
+import DisplayTasks from './DisplayTasks'
 import Loader from './Loader';
 import Pagination from './Pagination';
 
@@ -22,7 +23,8 @@ function TodoContainer() {
 
     useEffect(() => {
         read().then((data) => {
-            setTasks(data.todos)
+            setTasks(data.todos);
+            console.log(data.todos);
         });
     }, []);
 
@@ -50,6 +52,7 @@ function TodoContainer() {
             deleteTask(taskToDelete).then(res => {
                 read().then((data) => {
                     setTasks(data.todos)
+                    console.log(data.todos)
                 });
                 setIsLoading(false);
             })
@@ -100,6 +103,22 @@ function TodoContainer() {
         setShowForm(value);
     }
 
+    const handleDisplayAll = () => {
+        setTasksArray(tasks);
+    };
+
+    const handleDisplayPending = () => {
+        setTasksArray(tasks.filter(task =>
+            task.isCompleted !== true
+        ));
+    };
+
+    const handleDisplayCompleted = () => {
+        setTasksArray(tasks.filter(task =>
+            task.isCompleted === true
+        ));
+    };
+
     const list = tasksArray.map(task => {
         return (
             <TodoItem
@@ -126,6 +145,11 @@ function TodoContainer() {
                     <i className="fas fa-plus-circle"></i> Add New Task
                 </button>
             </div>
+            <DisplayTasks
+                all={handleDisplayAll}
+                pending={handleDisplayPending}
+                completed={handleDisplayCompleted}
+            />
             <Pagination
                 buttons={buttons}
                 pagination={handlePagination}

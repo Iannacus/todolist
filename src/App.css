@@ -239,3 +239,13 @@ input::placeholder {
   background-color: white;
   color: #2979ff;
 }
+
+.displayButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.btn-display {
+  width: 33%;
+}
