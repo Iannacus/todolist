@@ -2,37 +2,240 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  color: #2979ff;
+  font-family: 'Ubuntu', sans-serif;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+h2 {
+  font-size: 36px;
+}
+
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2%;
+}
+
+.btn-add {
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  padding: 10px 0;
+  background-color: #2979ff;
+  border-radius: 20px; 
+  color: white;
+  transform: scale(1);
+  transition: 0.3s;
+}
+
+.btn-add:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.tasks {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.task__container {
+    border-radius: 10px;
+    box-shadow: 3px 3px 7px 0px #219ebc;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.task__info {
+  position: relative;
+  z-index: 5;
+  width: 75%;
+}
+
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+}
+
+.checkbox-container label {
+  padding: 2px;
+  background-color: #FF6868;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.3s ease-out;
+  width: 40px;
+  height: 20px;
+  z-index: 2;
+}
+
+.checkbox-container label::after {
+  content: '';
+  background-color: #FFF;
+  border-radius: 50%;
+  transform: translateX(0);
+  transition: transform 0.3s linear;
+  width: 20px;
+  height: 20px;
+  z-index: 3;
+}
+
+.checkbox-container input {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2;
+}
+
+.checkbox-container input:checked + label + .active {
+  transform: scale(40);
+}
+
+.checkbox-container input:checked + label::after {
+  transform: translateX(calc(100% + 0.5px));
+}
+
+.active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  transform: scale(0);
+  transition: 1s;
+  height: 30px;
+  z-index: 1;
+}
+
+.checkbox-container.one .active,
+.checkbox-container.one input:checked + label {
+  background-color: #47B881;
+}
+
+
+.createTask {
+  width: 100%;
+  height: 100%;
+  background-color: #2979ff;
+  padding-top: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  position: absolute;
+  z-index: 100;
+  animation: desplazar 1s;
+  animation-fill-mode: forwards;
+  box-shadow: 2px 2px 3px 1px gray;
+
+}
+
+@keyframes desplazar {
+  0%{
+    top: 100%;
+  }
+  100%{
+    top: 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 10px 10px;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgba(255,255,255, 0.4);
+}
+
+.loader {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.spiner {
+  border: 4px solid rgba(42, 77, 235, 0.3);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: transparent;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
+@keyframes spin {
+  0%{
     transform: rotate(0deg);
   }
-  to {
+  100%{
     transform: rotate(360deg);
   }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.pagination__button {
+  background-color: #2979ff;
+  padding: 5px 10px;
+  color: white;
+  border: none;
+  border-radius: 7px;
+}
+
+.pagination__button:hover {
+  cursor: pointer;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  color: #2979ff;
+  font-size: 24px;
+  position: relative;
+  z-index: 5;
+}
+
+.close {
+  color: #FF2977;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+.submit-btn {
+  color: white;
+  border-radius: 20px;
+  border: 2px solid white;
+  background-color: transparent;
+  padding: 10px 0;
+}
+
+.submit-btn:hover {
+  background-color: white;
+  color: #2979ff;
 }
