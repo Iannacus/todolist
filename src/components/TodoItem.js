@@ -13,10 +13,10 @@ function TodoItem({ task, student, id, hDelete, hUpdate, c }) {
             <div className="task">
                 <div className="task__info">
                     <div className="task__name">
-                        <h3>{task}</h3>
+                        <p>{task}</p>
                     </div>
                     <div className="student name">
-                        <p>{student}</p>
+                        <h3>{student}</h3>
                     </div>
                 </div>
                 <div class="switch">

@@ -81,7 +81,7 @@ label {
   position: relative;
   z-index: 5;
   width: 80%;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 }
 
 /*Switch*/
@@ -310,5 +310,22 @@ input::placeholder {
 }
 
 .btn-display {
+  position: relative;
   width: 33%;
 }
+
+.displayPendings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: absolute;
+  top: -10%;
+  right: -2%;
+  z-index: 20;
+  background-color: #FF2977;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+

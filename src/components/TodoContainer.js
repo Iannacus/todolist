@@ -20,6 +20,7 @@ function TodoContainer() {
     const [buttons, setButtons] = useState(0);
     const [pagination, setPagination] = useState(1);
     const [displayText, setDisplayText] = useState('All Tasks');
+    const [pendingTasks, setPendingTasks] = useState(0);
     //variables for calc task pagination
     let start = ((pagination - 1) * 6);
     const end = start + 6;
@@ -68,6 +69,9 @@ function TodoContainer() {
         setIsLoading(true);
         if (tasks.length > 0) {
             setIsLoading(false);
+            //counting for pending tasks
+            const arr = tasks.filter(task => task.isCompleted !== true)
+            setPendingTasks(arr.length);
         }
     }, [tasks, isLoading])
     //Handle Values for api task creation
@@ -145,6 +149,7 @@ function TodoContainer() {
                 all={handleDisplayAll}
                 pending={handleDisplayPending}
                 completed={handleDisplayCompleted}
+                pendingTasks={pendingTasks}
             />
             <h2>{displayText}</h2>
             <Pagination
