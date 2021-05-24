@@ -80,25 +80,20 @@ label {
 .task__info {
   position: relative;
   z-index: 5;
-  width: 75%;
+  width: 80%;
+  font-size: 1.8rem;
 }
 
 /*Switch*/
 
-.switch {
-  grid-column: 1/2;
-  display: grid;
-  grid-template-columns: repeat(2, min-content);
-  grid-gap: 3rem;
-  justify-self: center;
-}
+
 .switch input {
   display: none;
 }
-.switch__1, .switch__2 {
-  width: 6rem;
+.switch__1 {
+  width: 5.5rem;
 }
-.switch__1 label, .switch__2 label {
+.switch__1 label{
   display: flex;
   align-items: center;
   width: 100%;
@@ -203,6 +198,7 @@ label {
   z-index: 100;
   animation: desplazar 1s;
   animation-fill-mode: forwards;
+  font-size: 3rem;
 
 }
 
