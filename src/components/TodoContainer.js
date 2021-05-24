@@ -8,6 +8,7 @@ import CreateTask from './CreateTask';
 import DisplayTasks from './DisplayTasks'
 import Loader from './Loader';
 import Pagination from './Pagination';
+import Succesufully from './Succesufully';
 
 function TodoContainer() {
     //app states
@@ -21,6 +22,8 @@ function TodoContainer() {
     const [pagination, setPagination] = useState(1);
     const [displayText, setDisplayText] = useState('All Tasks');
     const [pendingTasks, setPendingTasks] = useState(0);
+    const [showSucces, setShowSucces] = useState(false);
+    const [succesMessage, setSuccesMessage] = useState('');
     //variables for calc task pagination
     let start = ((pagination - 1) * 6);
     const end = start + 6;
@@ -77,10 +80,12 @@ function TodoContainer() {
     //Handle Values for api task creation
     const handleCreateTask = values => {
         setTaskToCreate(values);
+        handleSucces(true, 'Task Created Succesfully');
     }
     //handle id for api task delete
     const handleDelete = (identifier) => {
         setTaskToDelete(identifier);
+        handleSucces(true, 'task Deleted Succesfully');
     }
     //handle api task update check status
     const handleUpdate = (identifier, isChecked) => {
@@ -91,6 +96,7 @@ function TodoContainer() {
             });
             setIsLoading(false);
         });
+        handleSucces(true, 'task Updated Succesfully');
     }
     const handlePagination = (e) => {
         setPagination(e.target.textContent);
@@ -117,6 +123,10 @@ function TodoContainer() {
             task.isCompleted === true
         ));
         setDisplayText('Completed Tasks');
+    };
+    const handleSucces = (value = false, message = '') => {
+        setShowSucces(value);
+        setSuccesMessage(message);
     };
     //create a tasks list to display in app 
     const list = tasksArray.map(task => {
@@ -164,6 +174,10 @@ function TodoContainer() {
                         show={handleShow}
                     /> : null}
             </div>
+            {showSucces ? <Succesufully
+                message={succesMessage}
+                close={handleSucces}
+            /> : null}
         </ >
     );
 }

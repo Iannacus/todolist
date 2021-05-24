@@ -329,3 +329,24 @@ input::placeholder {
   border-radius: 50%;
 }
 
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  height: 75%;
+  position: absolute;
+  top: 12.5%;
+  left: 12.5%;
+  background: var(--greyLight-1);
+  box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
+            -.2rem -.2rem 1.8rem var(--white);
+  z-index: 50;
+  border-radius: 1rem;
+}
+
+.fa-check-circle {
+  font-size: 8.5rem;
+}
+
