@@ -10,6 +10,7 @@ import Loader from './Loader';
 import Pagination from './Pagination';
 
 function TodoContainer() {
+    //app states
     const [tasks, setTasks] = useState([]);
     const [tasksArray, setTasksArray] = useState([]);
     const [taskToCreate, setTaskToCreate] = useState(null);
@@ -18,107 +19,104 @@ function TodoContainer() {
     const [showForm, setShowForm] = useState(false);
     const [buttons, setButtons] = useState(0);
     const [pagination, setPagination] = useState(1);
+    const [displayText, setDisplayText] = useState('All Tasks');
+    //variables for calc task pagination
     let start = ((pagination - 1) * 6);
     const end = start + 6;
-
+    //Read api data
     useEffect(() => {
         read().then((data) => {
             setTasks(data.todos);
             console.log(data.todos);
         });
     }, []);
-
+    //Create api new task
     useEffect(() => {
         setShowForm(false);
         if (taskToCreate) {
             setIsLoading(true);
-            create(taskToCreate).then(res => {
+            create(taskToCreate).then(() => {
                 setIsLoading(false);
                 read().then((data) => {
                     setTasks(data.todos)
                 });
                 setIsLoading(false);
                 setTaskToCreate(null);
-            }, (err) => {
-                console.error(err);
             });
-
         }
     }, [taskToCreate]);
-
+    //Delete api task
     useEffect(() => {
         if (taskToDelete) {
             setIsLoading(true);
-            deleteTask(taskToDelete).then(res => {
+            deleteTask(taskToDelete).then(() => {
                 read().then((data) => {
                     setTasks(data.todos)
-                    console.log(data.todos)
                 });
                 setIsLoading(false);
             })
         }
     }, [taskToDelete]);
-
-
+    //Create task pagination
     useEffect(() => {
         if (tasks.length > 0) {
             setButtons(Math.ceil(tasks.length / 6));
             setTasksArray(tasks.slice(start, end));
         }
     }, [pagination, tasks, start, end])
-
+    //Show Spiner while data are loading
     useEffect(() => {
         setIsLoading(true);
         if (tasks.length > 0) {
             setIsLoading(false);
         }
     }, [tasks, isLoading])
-
-
-
+    //Handle Values for api task creation
     const handleCreateTask = values => {
         setTaskToCreate(values);
         console.log(values);
     }
-
+    //handle id for api task delete
     const handleDelete = (identifier) => {
         setTaskToDelete(identifier);
     }
-
+    //handle api task update check status
     const handleUpdate = (identifier, isChecked) => {
+        setDisplayText('All Tasks');
         update(identifier, isChecked).then((data) => {
-            console.log(data);
             read().then((data) => {
                 setTasks(data.todos);
             });
             setIsLoading(false);
         });
     }
-
     const handlePagination = (e) => {
         setPagination(e.target.textContent);
     }
-
+    //know when form should show in app
     const handleShow = value => {
         setShowForm(value);
     }
-
+    //set Array tasks to display all tasks
     const handleDisplayAll = () => {
         setTasksArray(tasks);
+        setDisplayText('All Tasks');
     };
-
+    //set Array tasks to display pending tasks
     const handleDisplayPending = () => {
         setTasksArray(tasks.filter(task =>
             task.isCompleted !== true
         ));
+        setDisplayText('Pending Tasks');
     };
-
+    //set Array tasks to display completed tasks
     const handleDisplayCompleted = () => {
         setTasksArray(tasks.filter(task =>
             task.isCompleted === true
         ));
+        setDisplayText('Completed Tasks');
     };
-
+    //create a tasks list to display in app 
     const list = tasksArray.map(task => {
         return (
             <TodoItem
@@ -136,7 +134,7 @@ function TodoContainer() {
     return (
         <>
             <div className='date'>
-                <h2>Welcome! Click on create to add a new task</h2>
+                <h2>Welcome! Click on add a new task</h2>
             </div>
             <div className="add">
                 <button className='btn-add' onClick={() => {
@@ -150,6 +148,7 @@ function TodoContainer() {
                 pending={handleDisplayPending}
                 completed={handleDisplayCompleted}
             />
+            <h2>{displayText}</h2>
             <Pagination
                 buttons={buttons}
                 pagination={handlePagination}
@@ -162,7 +161,6 @@ function TodoContainer() {
                         show={handleShow}
                     /> : null}
             </div>
-
         </ >
     );
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 function TodoItem({ task, student, id, hDelete, hUpdate, c }) {
 
     const [check, setCheck] = useState(false);
+    //set checkek or not checked property in checkbox
     useEffect(() => {
         setCheck(c)
     }, [c])
@@ -22,10 +23,13 @@ function TodoItem({ task, student, id, hDelete, hUpdate, c }) {
                     {check ? <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} checked /> : <input type="checkbox" onClick={(e) => hUpdate(id, e.target.checked)} id={id} />}
                     <label htmlFor={id}></label>
                     <div className="active"></div>
-
                 </div>
                 <div className='delete'>
-                    <button className='button' onClick={() => hDelete(id)}><i className="fas fa-trash-alt"></i></button>
+                    <button className='button'
+                        onClick={() => hDelete(id)}
+                    >
+                        <i className="fas fa-trash-alt">
+                        </i></button>
                 </div>
             </div>
         </div>

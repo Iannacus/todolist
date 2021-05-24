@@ -2,7 +2,7 @@ import React from 'react';
 
 function Pagination({ buttons, pagination }) {
     const buttonsList = [];
-    //se crea una lista para cada botón de la páginación 
+    //create a list for each pagination button
     if (buttons > 1) {
         for (let i = 1; i <= buttons; i++) {
             buttonsList.push(

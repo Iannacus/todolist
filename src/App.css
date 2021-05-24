@@ -10,6 +10,7 @@ body {
 
 h2 {
   font-size: 36px;
+  text-align: center;
 }
 
 .main {
@@ -54,6 +55,8 @@ label {
 }
 
 .task__container {
+    background-color: #219ebc;
+    color: white;
     border-radius: 10px;
     box-shadow: 3px 3px 7px 0px #219ebc;
     overflow: hidden;
@@ -214,7 +217,7 @@ input::placeholder {
 .button {
   background-color: transparent;
   border: none;
-  color: #2979ff;
+  color: white;
   font-size: 24px;
   position: relative;
   z-index: 5;
